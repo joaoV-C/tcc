@@ -1,34 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlaceHolder</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
-  <!-- CABEÇALHO FIXO -->
-  <header>
-    <div class="logo">PlaceHolder</div>
-
-    <!-- Checkbox para controlar o menu no mobile -->
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
-
-    <nav>
-      <ul>
-        <li><a href="trabalhos.php">Trabalhos</a></li>
-        <li><a href="artistas.php">Artistas</a></li>
-        <li><a href="sobre.php">Sobre a Loja</a></li>
-        <li><a href="compre.php">Compre</a></li>
-        <li><button>Log in</button></li>
-      </ul>
-    </nav>
-  </header>
+  <?php
+  include('includes/header.inc.php');
+  ?>
 
   <!-- HERO COM CARROSSEL -->
   <section class="hero">
@@ -165,8 +148,7 @@
         goToSlide(i);
       });
     });
-
-
   </script>
 </body>
+
 </html>
