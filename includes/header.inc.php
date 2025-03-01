@@ -11,11 +11,11 @@
 
     <nav>
       <ul>
-        <li><a href="#">Trabalhos</a></li>
-        <li><a href="#">Artistas</a></li>
-        <li><a href="#">Sobre a Loja</a></li>
-        <li><a href="#">Compre</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="trabalhos.php">Trabalhos</a></li>
+        <li><a href="artistas.php">Artistas</a></li>
+        <li><a href="sobre.php">Sobre a Loja</a></li>
+        <li><a href="compre.php">Compre</a></li>
+        <li><button>Log in</button></li>
       </ul>
     </nav>
   </header>
