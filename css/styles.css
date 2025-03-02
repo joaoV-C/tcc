@@ -1,59 +1,64 @@
-@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600&display=swap");
 
 /* RESET BÁSICO */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
+}
 
-  body {
-    font-family: 'Sarabun', serif;
+body {
+    font-family: "Sarabun", serif;
     line-height: 1.4;
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
     padding-top: 60px;
-  }
+}
 
-  /* CABEÇALHO */
-  header {
+/* CABEÇALHO */
+header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px 50px;
     z-index: 999;
-  }
+}
 
-  .logo {
+.logo {
     font-weight: bold;
     font-size: 1.3rem;
-  }
+}
 
-  /* Menu responsivo */
-  nav ul {
+.logo a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Menu responsivo */
+nav ul {
     list-style: none;
     display: flex;
     align-items: center;
     gap: 30px;
-  }
+}
 
-  nav a {
+nav a {
     text-decoration: none;
     color: #333;
     font-weight: 500;
-  }
+}
 
-  nav button {
+nav button {
     text-align: center;
     cursor: pointer;
     border: 1px solid rgb(0, 0, 0);
     color: #333;
-    background-color: #E4E4E4;
-    font-family: 'Sarabun', serif;
+    background-color: #e4e4e4;
+    font-family: "Sarabun", serif;
     font-style: normal;
     font-weight: 500;
     font-size: 1rem;
@@ -62,248 +67,255 @@
     border-radius: 15px;
     padding-left: 25px;
     padding-right: 25px;
-  }
+}
 
-  /* Ícone do menu burger (somente no mobile) */
-  .menu-icon {   /* O menu de mobile precisa ser ajustado. O ícone de hamburger
+/* Ícone do menu burger (somente no mobile) */
+.menu-icon {
+    /* O menu de mobile precisa ser ajustado. O ícone de hamburger
                     deve ficar alinhado à direita e ocupar toda a página */
     display: none;
     flex-direction: column;
     cursor: pointer;
-  }
+}
 
-  .menu-icon span {
+.menu-icon span {
     width: 25px;
     height: 3px;
     background-color: #333;
     margin: 4px 0;
     transition: 0.4s;
-  }
+}
 
-  /* Esconde o checkbox para controlar o menu no mobile */
-  #menu-toggle {
+/* Esconde o checkbox para controlar o menu no mobile */
+#menu-toggle {
     display: none;
-  }
+}
 
-  /* HERO (CARROSSEL) */
-  .hero {
+/* HERO (CARROSSEL) */
+.hero {
     width: 100%;
     margin-bottom: 40px;
     position: relative;
-  }
+}
 
-  .carousel {
+.carousel {
     display: flex;
     overflow: hidden;
     width: 100%;
-    /* transition: transform 0.5s ease; */
-  }
+    transition: transform 0.5s ease;
+}
 
-  .carousel-item {
-    flex: 0 0 100%;
+.carousel-item {
     display: flex;
+    flex: 0 0 100%;
     align-items: center;
     justify-content: flex-start;
     min-height: 400px; /* Mudar para a altura ideal */
     /* overflow: hiden; */
     /* padding: 0 20px; */
-  }
+}
 
-  .carousel-item img {
+.carousel-item img {
     width: 60%;
     height: 500px; /* Ajusta proporcionalmente */
     object-fit: cover;
-  }
+}
 
-  .hero-text {
+.hero-text {
     width: 40%;
     padding: 0 20px;
     box-sizing: border-box;
-  }
+}
 
-  /* Título Principal (H1) */
-  .hero-text h1:first-of-type {
+/* Título Principal (H1) */
+.hero-text h1:first-of-type {
     font-weight: 600; /* Sarabun SemiBold */
     font-style: normal;
     font-size: 2.5rem;
     margin-bottom: 10px;
-  }
+}
 
-  /* Subtítulo (H1) */
-  .hero-text h1:nth-of-type(2) {
+/* Subtítulo (H1) */
+.hero-text h1:nth-of-type(2) {
     font-weight: 400; /* Sarabun Regular */
     font-style: normal;
     font-size: 2.5em;
     margin-bottom: 10px;
-  }
+}
 
-  /* Texto menor (H2) */
-  .hero-text h2 {
+/* Texto menor (H2) */
+.hero-text h2 {
     font-weight: 400; /* Sarabun Regular */
     font-style: normal;
     font-size: 1.875rem; /* Tamanho padrão H2 */
-  }
+}
 
-  /* Indicadores do carrossel (“bolinhas”) */
-  .carousel-indicators {
+/* Indicadores do carrossel (“bolinhas”) */
+.carousel-indicators {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
     gap: 8px;
-  }
+}
 
-  .carousel-indicators .dot {
+.carousel-indicators .dot {
     width: 12px;
     height: 12px;
     background-color: #ccc;
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
+}
 
-  .carousel-indicators .dot.active { /* Slide autal */
+.carousel-indicators .dot.active {
+    /* Slide autal */
     background-color: #333;
-  }
+}
 
-  /* SEÇÃO EM DESTAQUE */
-  .em-destaque, .trabalhos-recentes {
+/* SEÇÃO EM DESTAQUE */
+.em-destaque,
+.trabalhos-recentes {
     padding: 40px 20px;
-  }
+}
 
-  .em-destaque h2, .trabalhos-recentes h2 {
+.em-destaque h2,
+.trabalhos-recentes h2 {
     font-size: 1.875rem;
     margin-bottom: 20px;
-  }
+}
 
-  .destaque-grid, .recentes-grid {
+.destaque-grid,
+.recentes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
-  }
+}
 
-  .destaque-item, .recente-item {
+.destaque-item,
+.recente-item {
     text-align: center;
-  }
+}
 
-  .destaque-item img, .recente-item img {
+.destaque-item img,
+.recente-item img {
     width: 100%;
     height: auto;
     background-color: #ccc; /* Placeholder visual */
     display: block;
-  }
+}
 
-  .destaque-item p, .recente-item p {
+.destaque-item p,
+.recente-item p {
     font-size: 32px; /* Aproximado de 24pt */
     margin-top: 10px;
-  }
+}
 
-  /* FOOTER */
-  footer {
+/* FOOTER */
+footer {
     background-color: #f2f2f2; /* Talvez mudar para a mesma cor do restante do site */
     padding: 20px;
-  }
+}
 
-  .footer-content {
+.footer-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
-  }
+}
 
-  .footer-content div {
+.footer-content div {
     flex: 1 1 200px;
-  }
+}
 
-  .contact p {
-    color: #79747E;
-  }
+.contact p {
+    color: #79747e;
+}
 
-  .policies a {
+.policies a {
     display: block;
-    color: #79747E;
+    color: #79747e;
     text-decoration: none;
     font-size: 0.8rem; /* Sujeito à mudança */
     margin-bottom: 8px;
-  }
+}
 
-  .newsletter h3 {
+.newsletter h3 {
     margin-bottom: 10px;
-  }
+}
 
-  .newsletter form {
+.newsletter form {
     display: flex;
     gap: 10px;
-  }
+}
 
-  .newsletter input[type="email"] {
+.newsletter input[type="email"] {
     flex: 1;
     padding: 8px;
-  }
+}
 
-  .newsletter button {
+.newsletter button {
     padding: 8px 16px;
     cursor: pointer;
-  }
+}
 
-  /* RESPONSIVIDADE */
-  @media (max-width: 768px) {
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
     nav ul {
-      position: absolute;
-      top: 49px;
-      right: 0;
-      background-color: #E4E4E4;
-      flex-direction: column;
-      gap: 10px;
-      width: 200px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease;
+        position: absolute;
+        top: 49px;
+        right: 0;
+        background-color: #e4e4e4;
+        flex-direction: column;
+        gap: 10px;
+        width: 200px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
     }
 
     /* Quando o checkbox está marcado, exibe o menu */
     #menu-toggle:checked + .menu-icon + nav ul {
-      max-height: 300px; /* valor suficiente para exibir todos os links */
+        max-height: 300px; /* valor suficiente para exibir todos os links */
     } /* Mudar para javascript */
 
     .menu-icon {
-      display: flex; /* Mostra o ícone burger no mobile */
-      position: absolute;
-      right: 30px;
+        display: flex; /* Mostra o ícone burger no mobile */
+        position: absolute;
+        right: 30px;
     }
-  }
+}
 
-  /* RESPONSIVIDADE HERO */
-  @media (max-width: 425px) {
+/* RESPONSIVIDADE HERO */
+@media (max-width: 425px) {
     .carousel-item {
-      flex-direction: column;
-      min-height: auto;
-      padding: 0;
+        flex-direction: column;
+        min-height: auto;
+        padding: 0;
     }
-  
 
     .carousel-tem img {
-      width: 100%;
-      height: auto;
-      padding: 0 20px;
-      box-sizing: border-box;
+        width: 100%;
+        height: auto;
+        padding: 0 20px;
+        box-sizing: border-box;
     }
 
     .hero-text {
-      width: 100%;
-      padding: 0 20px;
+        width: 100%;
+        padding: 0 20px;
     }
 
     /* Reduz o tamanho das fontes do hero em 30% */
     .hero-text h1:first-of-type {
-      font-size: calc(2.5rem * 0.7);
+        font-size: calc(2.5rem * 0.7);
     }
     .hero-text h1:nth-of-type(2) {
-      font-size: calc(2.5rem * 0.7);
+        font-size: calc(2.5rem * 0.7);
     }
     .hero-text h2 {
-      font-size: calc(1.875rem * 0.7);
+        font-size: calc(1.875rem * 0.7);
     }
-  }
+}
