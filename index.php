@@ -18,7 +18,7 @@
     <div class="carousel">
 
       <div class="carousel-item" id="heroSlide-1">
-        <img src="imagens/imagem1.jpg" alt="Slide 1" />
+        <img src="assets/images/imagem1.jpg" alt="Slide 1" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
@@ -27,7 +27,7 @@
       </div>
 
       <div class="carousel-item" id="heroSlide-2">
-        <img src="imagem2.jpg" alt="Slide 2" />
+        <img src="assets/images/imagem1.jpg" alt="Slide 2" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
@@ -36,7 +36,7 @@
       </div>
 
       <div class="carousel-item" id="heroSlide-3">
-        <img src="imagem3.jpg" alt="Slide 3" />
+        <img src="assets/images/imagem1.jpg" alt="Slide 3" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
