@@ -10,8 +10,8 @@
 body {
   font-family: "Sarabun", serif;
   line-height: 1.4;
-  background-color: #e4e4e4;
-  padding-top: 60px;
+  background-color: #f1f1f1;
+  padding-top: 80px;
 }
 
 /* CABEÇALHO */
@@ -20,22 +20,22 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #e4e4e4;
+  background-color: #f1f1f1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 50px;
+  padding: 25px 70px;
   z-index: 999;
 }
 
 .logo {
   font-weight: bold;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 }
 
 .logo a {
   text-decoration: none;
-  color: #333;
+  color: #000000;
 }
 
 /* Menu responsivo */
@@ -94,6 +94,7 @@ nav input {
 /* HERO (CARROSSEL) */
 .hero {
   width: 100%;
+  margin-top: 55px;
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
@@ -110,14 +111,15 @@ nav input {
   flex: 0 0 100%;
   align-items: center;
   justify-content: flex-start;
-  min-height: 400px; /* Mudar para a altura ideal */
+  min-height: 500px; /* Mudar para a altura ideal */
+  background-color: #d9d9d9;
   /* overflow: hiden; */
   /* padding: 0 20px; */
 }
 
 .carousel-item img {
   width: 60%;
-  height: 500px; /* Ajusta proporcionalmente */
+  height: 100%; /* Ajusta proporcionalmente */
   object-fit: cover;
 }
 
@@ -131,16 +133,15 @@ nav input {
 .hero-text h1:first-of-type {
   font-weight: 600; /* Sarabun SemiBold */
   font-style: normal;
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 3.5rem;
+  margin-bottom: -10px;
 }
 
 /* Subtítulo (H1) */
 .hero-text h1:nth-of-type(2) {
   font-weight: 400; /* Sarabun Regular */
   font-style: normal;
-  font-size: 2.5em;
-  margin-bottom: 10px;
+  font-size: 3.5em;
 }
 
 /* Texto menor (H2) */
@@ -148,6 +149,7 @@ nav input {
   font-weight: 400; /* Sarabun Regular */
   font-style: normal;
   font-size: 1.875rem; /* Tamanho padrão H2 */
+  margin-top: 30px;
 }
 
 /* Indicadores do carrossel (“bolinhas”) */
@@ -155,8 +157,8 @@ nav input {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  gap: 8px;
+  margin-top: 40px;
+  gap: 30px;
 }
 
 .carousel-indicators .dot {
