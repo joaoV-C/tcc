@@ -94,7 +94,7 @@ nav input {
 /* HERO (CARROSSEL) */
 .hero {
   width: 100%;
-  margin-top: 55px;
+  /* margin-top: 55px; */
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
