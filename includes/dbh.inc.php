@@ -1,7 +1,7 @@
 <?php
 
 $host = 'localhost';
-$dbname = 'trabalho-final';
+$dbname = 'trabalho_final';
 $dbusername = 'root';
 $dbpassword = '';
 
