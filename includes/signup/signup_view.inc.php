@@ -79,7 +79,7 @@
           <!-- USERNAME REGISTRATION ERROR MESSAGES -->
           <div class="form-message-wrapper">
             <?php if (!empty($signupErrors['empty_input']) && empty($signupData['username'])): ?>
-              <p class="error"><?php echo $signupErrors['empty_input']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['empty_input']; ?></p>
             <?php endif; ?>
           </div>
         </div>
@@ -93,13 +93,13 @@
           <!-- EMAIL REGISTRATION ERROR MESSAGES -->
           <div class="form-message-wrapper">
             <?php if (isset($signupErrors['empty_input']) && empty($signupData['email'])): ?>
-              <p class="error"><?php echo $signupErrors['empty_input']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['empty_input']; ?></p>
             <?php endif ?>
             <?php if (isset($signupErrors['invalid_email'])): ?>
-              <p class="error"><?php echo $signupErrors['invalid_email']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['invalid_email']; ?></p>
             <?php endif ?>
             <?php if (isset($signupErrors['registered_email'])): ?>
-              <p class="error"><?php echo $signupErrors['registered_email']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['registered_email']; ?></p>
             <?php endif ?>
           </div>
         </div>
@@ -113,10 +113,10 @@
           <!-- PASSWORD REGISTRATION ERROR MESSAGES -->
           <div class="form-message-wrapper">
             <?php if (isset($signupErrors['empty_input'])): ?>
-              <p class="error"><?php echo $signupErrors['empty_input']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['empty_input']; ?></p>
             <?php endif; ?>
             <?php if (isset($signupErrors['weak_password'])): ?>
-              <p class="error"><?php echo $signupErrors['weak_password']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['weak_password']; ?></p>
             <?php endif; ?>
           </div>
         </div>
@@ -129,10 +129,10 @@
           <!-- PASSWORD CONFIRMATION REGISTRATION ERROR MESSAGES -->
           <div class="form-message-wrapper">
             <?php if (isset($signupErrors['empty_input'])): ?>
-              <p class="error"><?php echo $signupErrors['empty_input']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['empty_input']; ?></p>
             <?php endif; ?>
             <?php if (isset($signupErrors['unmatching_password'])): ?>
-              <p class="error"><?php echo $signupErrors['unmatching_password']; ?></p>
+              <p class="error-message"><?php echo $signupErrors['unmatching_password']; ?></p>
             <?php endif; ?>
           </div>
         </div>
