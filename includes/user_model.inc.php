@@ -38,4 +38,30 @@ class UserModel {
       'pwd' => $hashedPassword
     ]);
   }
+
+  public function registerOrder(
+    string $country,
+    string $fullName,
+    string $phoneNumber,
+    string $address,
+    string $complement,
+    string $city,
+    string $district,
+    string $postalCode,
+  ) {
+    $stmt = $this->pdo->prepare(
+      "INSERT INTO orders (country, full_name, phone_number, addr, complement, city, district, postal_code)
+      VALUES (:country, :full_name, :phone_number, :addr, :complement, :city, :district, :postal_code)"
+    );
+    $stmt->execute([
+      'country' => $country,
+      'full_name' => $fullName,
+      'phone_number' => $phoneNumber,
+      'addr' => $address,
+      'complement' => $complement,
+      'city' => $city,
+      'district' => $district,
+      'postal_code' => $postalCode
+    ]);
+  }
 }
