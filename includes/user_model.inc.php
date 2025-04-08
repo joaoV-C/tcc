@@ -39,7 +39,9 @@ class UserModel {
     ]);
   }
 
-  public function registerOrder(
+  public function createOrder(
+    int $userId,
+    string $email,
     string $country,
     string $fullName,
     string $phoneNumber,
@@ -48,20 +50,59 @@ class UserModel {
     string $city,
     string $district,
     string $postalCode,
-  ) {
-    $stmt = $this->pdo->prepare(
-      "INSERT INTO orders (country, full_name, phone_number, addr, complement, city, district, postal_code)
-      VALUES (:country, :full_name, :phone_number, :addr, :complement, :city, :district, :postal_code)"
-    );
-    $stmt->execute([
-      'country' => $country,
-      'full_name' => $fullName,
-      'phone_number' => $phoneNumber,
-      'addr' => $address,
-      'complement' => $complement,
-      'city' => $city,
-      'district' => $district,
-      'postal_code' => $postalCode
-    ]);
+    float $total,
+    array $cartItems
+  ): int {
+    $this->pdo->beginTransaction();
+
+    try {
+      $stmt = $this->pdo->prepare( // Order header
+        "INSERT INTO orders 
+        (user_id, email, country, full_name, phone_number, street_addr, complement, 
+        city, district, postal_code, total)
+        VALUES 
+        (:user_id, :email ,:country, :full_name, :phone_number, :addr, :complement, 
+        :city, :district, :postal_code, :total)"
+      );
+
+      $stmt->execute([
+        'user_id' => $userId,
+        'email' => $email,
+        'country' => $country,
+        'full_name' => $fullName,
+        'phone_number' => $phoneNumber,
+        'addr' => $address,
+        'complement' => $complement,
+        'city' => $city,
+        'district' => $district,
+        'postal_code' => $postalCode,
+        'total' => $total
+      ]);
+
+      $orderId = $this->pdo->lastInsertId();
+
+      $itemStmt = $this->pdo->prepare( // Order items
+        "INSERT INTO order_items
+        (order_id, product_id, product_name, quantity, price)
+        VALUES
+        (:order_id, :product_id, :product_name, :quantity, :price)"
+      );
+
+      foreach ($cartItems as $item) {
+        $itemStmt->execute([
+          'order_id' => $orderId,
+          'product_id' => $item['id'],
+          'product_name' => $item['name'],
+          'quantity' => $item['quantity'],
+          'price' => $item['price'],
+        ]);
+      }
+
+      $this->pdo->commit();
+      return $orderId;
+    } catch (PDOException $e) {
+      $this->pdo->rollBack();
+      throw $e;
+    }
   }
 }
