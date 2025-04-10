@@ -105,7 +105,7 @@
         <hr>
         <h4>Total: €<?= number_format($subtotal * 1.23, 2) ?></h4>
 
-        <form action="checkout.php" method="post">
+        <form action="/../controllers/checkout.php" method="post">
           <input type="hidden" name="qty" value="<?= htmlspecialchars($_SESSION['item_qty']) ?>">
           <input type="hidden" name="subtotal" value="<?= number_format($subtotal, 2) ?>">
           <input type="hidden" name="tax" value="<?= number_format($subtotal * 0.23, 2) ?>">
