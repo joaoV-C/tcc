@@ -119,12 +119,12 @@
       <p>Seu cesto está vazio</p>
     <?php endif ?>
 
-    <a href="/tcc/compre.php">Continue Comprando</a>
+    <a href="/compre.php">Continue Comprando</a>
   </div>
 
   <?php if (!isset($_SESSION['user_id'])): ?>
     <div class="signin-redirector-container">
-      <form action="signin.php" method="get">
+      <form action="/signin.php" method="get">
         <button type="submit" class="signin btn">Iniciar sessão</button>
       </form>
     </div>

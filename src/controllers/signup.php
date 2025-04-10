@@ -40,18 +40,18 @@ try {
         'password' => $password
       ];
 
-      header('Location: signup.php?registo=falha');
+      header('Location: /signup.php?registo=falha');
       exit();
     } else { // Sucesso
       $userModel->createUser($username, $email, $password);
       $_SESSION['signup_success'] = "Registo feito com sucesso";
-      header("Location: signup.php?registo=sucesso");
+      header("Location: /signup.php?registo=sucesso");
       exit();
     }
   }
 } catch (PDOException $e) {
   $_SESSION['signup_errors'] = ("Falha na consulta: " . $e->getMessage());
-  header("Location: signup.php");
+  header("Location: /signup.php");
   exit();
 }
 

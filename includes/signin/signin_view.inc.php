@@ -12,7 +12,7 @@
   <?php include('includes/header.inc.php'); ?>
 
   <div class="signin-container">
-    <form action="signin.php" method="post">
+    <form action="/signin.php" method="post">
       <div class="signin-content">
 
         <h2>Inicie sessão</h2>
@@ -51,7 +51,7 @@
     </form>
   </div>
   <div>
-    <a href="signup.php">Criar conta</a>
+    <a href="/signup.php">Criar conta</a>
   </div>
 </body>
 

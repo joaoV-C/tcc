@@ -28,14 +28,14 @@ try {
         'password' => $password
       ];
 
-      header('Location: signin.php?entrar=falha');
+      header('Location: /signin.php?entrar=falha');
       exit();
     } else {
       $_SESSION['signin_success'] = 'Log in efetuado com sucesso';
       $_SESSION['user_id'] = $userModel->findByEmail($email)['id'];
       $_SESSION['user_email'] = $userModel->findByEmail($email)['email'];
 
-      header('Location: signin.php?entrar=sucesso');
+      header('Location: /signin.php?entrar=sucesso');
       exit();
     }
   } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
@@ -46,7 +46,7 @@ try {
   }
 } catch (PDOException $e) {
   $_SESSION['signin_errors'] = ("Falha na consulta: " . $e->getMessage());
-  header("Location: signin.php");
+  header("Location: /signin.php");
   exit();
 }
 

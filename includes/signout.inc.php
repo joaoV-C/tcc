@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     session_destroy();
 
 
-    header("Location: ../signin.php?action=logout&status=sucesso");
+    header("Location: /signin.php?action=logout&status=sucesso");
     exit;
   }
 }

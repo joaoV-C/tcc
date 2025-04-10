@@ -86,8 +86,8 @@
             </button>
             <div id="myDropdown" class="dropdown-content">
               <?php if (!isset($_SESSION['user_id'])): ?>
-                <a href="signin.php?action=login">Iniciar sessão</a>
-                <a href="signup.php?action=signup">Criar conta</a>
+                <a href="/signin.php?action=login">Iniciar sessão</a>
+                <a href="/signup.php?action=signup">Criar conta</a>
               <?php else: ?>
                 <a href="src/controllers/account.php">Conta</a>
                 <a href="#profile">Perfil</a>
