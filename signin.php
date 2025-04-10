@@ -8,7 +8,7 @@ try {
   $userModel = new UserModel($pdo);
   $signinErrorHandler = new SigninErrorHandler($userModel);
 
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
@@ -38,6 +38,11 @@ try {
       header('Location: signin.php?entrar=sucesso');
       exit();
     }
+  } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
+    if ($_GET['action'] === 'login') {
+      include 'includes/signin/signin_view.inc.php';
+      exit();
+    }
   }
 } catch (PDOException $e) {
   $_SESSION['signin_errors'] = ("Falha na consulta: " . $e->getMessage());
@@ -49,7 +54,7 @@ $signinErrors = $_SESSION['signin_errors'] ?? '';
 $signinSuccess = $_SESSION['signin_success'] ?? '';
 $userEmail = $_SESSION['user_email'] ?? '';
 $signinData = $_SESSION['signin_data'] ?? '';
-unset($_SESSION['signin_errors'], $_SESSION['signin_success'], $_SESSION['user_email'], $_SESSION['signin_data']);
+unset($_SESSION['signin_errors'], $_SESSION['signin_success'], $_SESSION['signin_data']);
 
 
 include 'includes/signin/signin_view.inc.php';
