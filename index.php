@@ -1,4 +1,4 @@
-<?php require_once 'includes/config_session.inc.php'; ?>
+<?php require_once 'src/config/config_session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">

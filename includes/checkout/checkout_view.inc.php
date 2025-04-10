@@ -155,7 +155,7 @@
       <h3>Resumo do Pedido</h3>
 
       <?php
-      require_once 'includes/config_session.inc.php';
+      require_once 'src/config/config_session.php';
       foreach ($_SESSION['cart'] as $item):
       ?>
         <img src="public/assets/images/<?= htmlspecialchars($item['image'] ?? '') ?>"

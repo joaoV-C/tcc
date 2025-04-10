@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/config_session.inc.php';
+require_once 'src/config/config_session.php';
 require_once 'includes/dbh.inc.php';
 require_once 'includes/user_model.inc.php';
 require_once 'includes/checkout/checkout_contr.inc.php';
