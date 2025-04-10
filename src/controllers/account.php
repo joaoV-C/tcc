@@ -1,7 +1,7 @@
 <?php
 require_once 'src/config/config_session.php';
 require_once 'includes/dbh.inc.php';
-require_once 'includes/user_model.inc.php';
+require_once '/src/models/user_model.php';
 
 
 if (!isset($_SESSION['user_id'])) {
