@@ -1,39 +1,121 @@
-<header>
-  <div class="logo"><a href="index.php">PlaceHolder</a></div>
+<!DOCTYPE html>
+<html lang="pt">
 
-  <!-- Checkbox para controlar o menu no mobile -->
-  <input type="checkbox" id="menu-toggle" />
-  <label for="menu-toggle" class="menu-icon">
-    <span></span>
-    <span></span>
-    <span></span>
-  </label>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Dropdown container */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
 
-  <nav>
-    <ul>
-      <li><a href="trabalhos.php">Trabalhos</a></li>
-      <li><a href="artistas.php">Artistas</a></li>
-      <li><a href="sobre.php">Sobre a Loja</a></li>
-      <li><a href="compre.php">Compre</a></li>
-      <li>
-        <div class="user-menu-container">
+    /* Dropdown button styling */
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+    }
 
-          <form
-            action="
-            <?php
-            require_once 'includes/config_session.inc.php';
-            echo isset($_SESSION['user_id']) ? 'profile.php' : 'includes/signin/signin_contr.inc.php';
-            ?>"
-            method="post">
-            <button type="submit">
-              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#333">
-                <path d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
-              </svg>
+    /* Dropdown content (hidden by default) */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+    }
+
+    /* Links inside the dropdown */
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Show dropdown menu when active */
+    .dropdown-content.show {
+      display: block;
+      top: 48px;
+    }
+
+    /* Change color on hover */
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    /* Person icon styling */
+    .fa-user,
+    .fa-bag-shopping {
+      font-size: 1rem;
+      color: #333;
+    }
+  </style>
+  <script src="public/js/index.js" async></script>
+</head>
+
+<body>
+  <header>
+    <div class="logo"><a href="index.php">PlaceHolder</a></div>
+
+    <!-- Checkbox para controlar o menu no mobile -->
+    <input type="checkbox" id="menu-toggle" />
+    <label for="menu-toggle" class="menu-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+
+    <nav>
+      <ul>
+        <li><a href="trabalhos.php">Trabalhos</a></li>
+        <li><a href="artistas.php">Artistas</a></li>
+        <li><a href="sobre.php">Sobre a Loja</a></li>
+        <li><a href="compre.php">Compre</a></li>
+        <li>
+          <div class="dropdown">
+            <button class="user icon-btn dropdown" id="user-dropdown-btn">
+              <i class="fas fa-user"></i>
             </button>
-          </form>
+            <div id="myDropdown" class="dropdown-content">
+              <?php if (!isset($_SESSION['user_id'])): ?>
+                <a href="signin.php?action=login">Iniciar sessão</a>
+                <a href="signup.php?action=signup">Criar conta</a>
+              <?php else: ?>
+                <a href="src/controllers/account.php">Conta</a>
+                <a href="#profile">Perfil</a>
+                <a href="#" class="logout-redirector">Logout</a>
 
-        </div>
-      </li>
-    </ul>
-  </nav>
-</header>
+                <form action="includes/signout.inc.php" method="post" style="display: none"
+                  class="logout-redirector-form">
+                  <input type="hidden" name="action_token" value="123">
+                </form>
+              <?php endif ?>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="cart-container">
+            <button class="cart icon-btn">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </button>
+            <form action="/tcc/basket.php" method="post">
+
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+  </header>
+
+</body>
+
+</html>
