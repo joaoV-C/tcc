@@ -1,7 +1,7 @@
 <?php
 require_once 'src/config/config_session.php';
 require_once 'includes/dbh.inc.php';
-require_once 'includes/artwork_model.inc.php';
+require_once '/src/models/artwork_model.php';
 
 try {
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artwork_id'])) {
