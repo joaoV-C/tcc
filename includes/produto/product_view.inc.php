@@ -35,7 +35,7 @@
     <h2><?= htmlspecialchars($artwork['artist']) ?></h2>
     <p>Preço: €<?= number_format($artwork['price'], 2) ?></p>
 
-    <form action="/tcc/basket.php" method="post">
+    <form action="src/controllers/basket.php" method="post">
       <div class="basket-form-content">
         <input type="hidden" name="artwork_id" value="<?= htmlspecialchars($artwork['id']) ?>">
         <input type="number" name="quantity" value="1" min="1" style="width: 60px;">

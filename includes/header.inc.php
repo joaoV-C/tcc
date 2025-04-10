@@ -106,7 +106,7 @@
             <button class="cart icon-btn">
               <i class="fa-solid fa-bag-shopping"></i>
             </button>
-            <form action="/tcc/basket.php" method="post">
+            <form action="src/controllers/basket.php" method="post">
 
             </form>
           </div>
