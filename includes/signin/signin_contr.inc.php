@@ -1,8 +1,4 @@
 <?php
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  header('Location: ../../signin.php');
-}
-
 require_once 'includes/user_model.inc.php';
 
 $userModel = new UserModel($pdo);
