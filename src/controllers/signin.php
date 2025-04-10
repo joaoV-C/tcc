@@ -1,8 +1,6 @@
 <?php
-require_once 'includes/dbh.inc.php';
-require_once '/src/models/user_model.php';
-require_once 'includes/signin/signin_contr.inc.php';
-require_once 'src/config/config_session.php';
+require_once __DIR__ . '/../models/user_model.php';
+require_once __DIR__ . '/../includes/signin_contr.inc.php';
 
 try {
   $userModel = new UserModel($pdo);
