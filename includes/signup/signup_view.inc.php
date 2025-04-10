@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="public/css/styles.css">
   <style>
     .signup-container {
       display: flex;
@@ -36,7 +36,6 @@
       border-radius: 5px;
       border-color: #333;
       /* #86868b */
-      margin-bottom: 13.2px;
       padding: 10px 12px;
       box-sizing: border-box;
       font-family: "Sarabun", serif;
@@ -57,10 +56,9 @@
   <?php include('includes/header.inc.php'); ?>
 
   <div class="signup-container">
-
     <form method="POST">
-
       <div class="signup-content">
+
         <h2>Criar Conta</h2>
 
         <?php if (!empty($signupSuccess)): ?>
@@ -71,7 +69,7 @@
         <?php endif; ?>
 
         <!-- USERNAME -->
-        <div class="signup-input username">
+        <div class="form-input container" id="signup-username">
           <p>Digite o seu nome</p>
           <input type="text" name="username" placeholder="Nome" class="form-textbox-input"
             value="<?php echo htmlspecialchars($signupData['username'] ?? ''); ?>">
@@ -85,7 +83,7 @@
         </div>
 
         <!-- EMAIL -->
-        <div class="signup-input email">
+        <div class="form-input container" id="signup-email">
           <p>Email</p>
           <input type="email" name="email" placeholder="nome@example.com" class="form-textbox-input"
             value="<?php echo htmlspecialchars($signupData['email'] ?? ''); ?>">
@@ -105,7 +103,7 @@
         </div>
 
         <!-- PASSWORD -->
-        <div class="signup-input password">
+        <div class="form-input container" id="signup-password">
           <p>Palavra-passe</p>
           <input type="password" name="password" placeholder="No mínimo 8 caracteres" class="form-textbox-input"
             value="<?php echo htmlspecialchars($signupData['password'] ?? ''); ?>">
@@ -122,7 +120,7 @@
         </div>
 
         <!-- REPEAT PASSWORD -->
-        <div class="signup-input re-password">
+        <div class="form-input container" id="signup-re-passord">
           <input type="password" name="repeat_password" placeholder="Confirme a palavra-passe"
             class="form-textbox-input">
 
@@ -137,7 +135,7 @@
           </div>
         </div>
 
-        <button type="submit">Continuar</button>
+        <button type="submit" class="signup btn">Continuar</button>
       </div>
     </form>
   </div>

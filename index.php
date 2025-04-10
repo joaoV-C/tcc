@@ -1,3 +1,5 @@
+<?php require_once 'includes/config_session.inc.php'; ?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -5,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PlaceHolder</title>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="public/css/styles.css">
 </head>
 
 <body>
@@ -18,7 +20,7 @@
     <div class="carousel">
 
       <div class="carousel-item" id="heroSlide-1">
-        <img src="assets/images/imagem1.jpg" alt="Slide 1" />
+        <img src="public/assets/images/bard-fanart_1280x1266.jpg" alt="Slide 1" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
@@ -27,7 +29,7 @@
       </div>
 
       <div class="carousel-item" id="heroSlide-2">
-        <img src="assets/images/imagem1.jpg" alt="Slide 2" />
+        <img src="public/assets/images/gigante_1920x914.jpg" alt="Slide 2" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
@@ -36,7 +38,7 @@
       </div>
 
       <div class="carousel-item" id="heroSlide-3">
-        <img src="assets/images/imagem1.jpg" alt="Slide 3" />
+        <img src="public/assets/images/bard-fanart_1280x1266.jpg" alt="Slide 3" />
         <div class="hero-text">
           <h1>Lorem Ipsum</h1>
           <h1>Lorem Ipsum</h1>
