@@ -105,4 +105,51 @@ class UserModel {
       throw $e;
     }
   }
+
+  public function getOrders(int $userId): array {
+    $stmt = $this->pdo->prepare(
+      "SELECT o.order_id, o.order_date, o.total,
+              oi.product_id, oi.product_name, oi.quantity, oi.price
+      FROM orders o
+      JOIN orders_items oi ON o.order_id = oi.order_id
+      WHERE o.user_id = :user_id
+      ORDER BY o.order_date DESC"
+    );
+    $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function cancelOrder(int $userId, int $orderId): bool {
+    $this->pdo->beginTransaction();
+    try {
+      // Verify order belongs to user
+      $checkStmt = $this->pdo->prepare(
+        "SELECT order_id FROM orders
+        WHERE order_id = :order_id AND user_id = :user_id"
+      );
+      $checkStmt->execute(['order_id' => $orderId, 'user_id' => $userId]);
+
+      if ($checkStmt->rowCount() === 0) {
+        return false;
+      }
+
+      // Delete order items
+      $deleteItems = $this->pdo->prepare(
+        "DELETE FROM order_items WHERE order_id = :order_id"
+      );
+      $deleteItems->execute(['order_id' => $orderId]);
+
+      // Delete order
+      $deleteOrder = $this->pdo->prepare(
+        "DELETE FROM orders WHERE order_id = :order_id"
+      );
+      $deleteOrder = $this->pdo->execute(['order_id' => $orderId]);
+
+      $this->pdo->commit();
+      return true;
+    } catch (PDOException $e) {
+      $this->pdo->rollBack();
+      throw $e;
+    }
+  }
 }
