@@ -1,12 +1,9 @@
 <?php
-require_once 'src/config/config_session.php';
-require_once 'includes/dbh.inc.php';
-require_once '/src/models/artwork_model.php';
 
 try {
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artwork_id'])) {
 
-    $artworkModel = new ArtworkModel($pdo);
+    $artworkModel = new ArtworkModel($GLOBALS['pdo']);
     $artwork = $artworkModel->getArtworkById($_POST['artwork_id']);
 
     if (isset($_POST['quantity'])) {
@@ -83,13 +80,16 @@ try {
       }
     }
     // GET request redirection. It prevents the forms from being submitted again when the page reloads
-    header("Location: basket.php");
+    header("Location: /tcc/cart");
     exit();
   }
 } catch (Exception $e) {
-  $_SESSION['basket_errors'] = ("Falha na consulta: " . $e->getMessage());
-  header("Location: basket.php");
+  $_SESSION['cart_errors'] = ("Falha na consulta: " . $e->getMessage());
+  header("Location: /tcc/cart");
   exit();
 }
 
-include 'includes/basket/basket_view.inc.php';
+$cartErrors = $_SESSION['cart_errors'] ?? '';
+unset($_SESSION['cart_errors']);
+
+include __DIR__ . '/../views/basket_view.inc.php';
