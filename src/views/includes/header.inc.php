@@ -58,12 +58,12 @@
       color: #333;
     }
   </style>
-  <script src="/js/index.js" async></script>
+  <script src="/tcc/js/index.js" async></script>
 </head>
 
 <body>
   <header>
-    <div class="logo"><a href="index.php">PlaceHolder</a></div>
+    <div class="logo"><a href="/tcc/">PlaceHolder</a></div>
 
     <!-- Checkbox para controlar o menu no mobile -->
     <input type="checkbox" id="menu-toggle" />
@@ -75,10 +75,10 @@
 
     <nav>
       <ul>
-        <li><a href="artworks">Trabalhos</a></li>
-        <li><a href="artists">Artistas</a></li>
-        <li><a href="about">Sobre a Loja</a></li>
-        <li><a href="store">Compre</a></li>
+        <li><a href="/tcc/artworks">Trabalhos</a></li>
+        <li><a href="/tcc/artists">Artistas</a></li>
+        <li><a href="/tcc/about">Sobre a Loja</a></li>
+        <li><a href="/tcc/shop">Compre</a></li>
         <li>
           <div class="dropdown">
             <button class="user icon-btn dropdown" id="user-dropdown-btn">
@@ -86,14 +86,14 @@
             </button>
             <div id="myDropdown" class="dropdown-content">
               <?php if (!isset($_SESSION['user_id'])): ?>
-                <a href="/signin?action=login">Iniciar sessão</a>
-                <a href="/signup?action=signup">Criar conta</a>
+                <a href="/tcc/signin?action=login">Iniciar sessão</a>
+                <a href="/tcc/signup?action=signup">Criar conta</a>
               <?php else: ?>
-                <a href="/account">Conta</a>
-                <a href="/profile">Perfil</a>
+                <a href="/tcc/account?user=<?= htmlspecialchars($_SESSION['user_email']) ?>">Conta</a>
+                <a href="/tcc/profile">Perfil</a>
                 <a href="#" class="logout-redirector">Logout</a>
 
-                <form action="/signout" method="post" style="display: none"
+                <form action="/tcc/signout" method="post" style="display: none"
                   class="logout-redirector-form">
                   <input type="hidden" name="action_token" value="123">
                 </form>
@@ -103,11 +103,10 @@
         </li>
         <li>
           <div class="cart-container">
-            <button class="cart icon-btn">
-              <i class="fa-solid fa-bag-shopping"></i>
-            </button>
-            <form action="src/controllers/basket.php" method="post">
-
+            <form action="/tcc/cart" method="post">
+              <button class="cart icon-btn">
+                <i class="fa-solid fa-bag-shopping"></i>
+              </button>
             </form>
           </div>
         </li>
