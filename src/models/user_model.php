@@ -88,7 +88,7 @@ class UserModel {
         (:order_id, :product_id, :product_name, :quantity, :price)"
       );
 
-      foreach ($cartItems as $item) {
+      foreach ($cartItems as $item) { // store images into here 
         $itemStmt->execute([
           'order_id' => $orderId,
           'product_id' => $item['id'],
@@ -111,7 +111,7 @@ class UserModel {
       "SELECT o.order_id, o.order_date, o.total,
               oi.product_id, oi.product_name, oi.quantity, oi.price
       FROM orders o
-      JOIN orders_items oi ON o.order_id = oi.order_id
+      JOIN order_items oi ON o.order_id = oi.order_id
       WHERE o.user_id = :user_id
       ORDER BY o.order_date DESC"
     );
