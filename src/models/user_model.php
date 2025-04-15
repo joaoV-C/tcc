@@ -83,9 +83,9 @@ class UserModel {
 
       $itemStmt = $this->pdo->prepare( // Order items
         "INSERT INTO order_items
-        (order_id, product_id, product_name, quantity, price)
+        (order_id, product_id, product_name, product_image, quantity, price)
         VALUES
-        (:order_id, :product_id, :product_name, :quantity, :price)"
+        (:order_id, :product_id, :product_name, :product_image, :quantity, :price)"
       );
 
       foreach ($cartItems as $item) { // store images into here 
@@ -93,6 +93,7 @@ class UserModel {
           'order_id' => $orderId,
           'product_id' => $item['id'],
           'product_name' => $item['name'],
+          'product_image' => $item['image'],
           'quantity' => $item['quantity'],
           'price' => $item['price'],
         ]);
@@ -109,7 +110,7 @@ class UserModel {
   public function getOrders(int $userId): array {
     $stmt = $this->pdo->prepare(
       "SELECT o.order_id, o.order_date, o.total,
-              oi.product_id, oi.product_name, oi.quantity, oi.price
+              oi.product_id, oi.product_name, oi.product_image, oi.quantity, oi.price
       FROM orders o
       JOIN order_items oi ON o.order_id = oi.order_id
       WHERE o.user_id = :user_id
@@ -143,7 +144,7 @@ class UserModel {
       $deleteOrder = $this->pdo->prepare(
         "DELETE FROM orders WHERE order_id = :order_id"
       );
-      $deleteOrder = $this->pdo->execute(['order_id' => $orderId]);
+      $deleteOrder->execute(['order_id' => $orderId]);
 
       $this->pdo->commit();
       return true;
