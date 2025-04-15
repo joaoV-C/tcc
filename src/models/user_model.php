@@ -6,19 +6,7 @@ class UserModel {
     $this->pdo = $pdo;
   }
 
-  public function findByUsername(string $username) {
-    $stmt = $this->pdo->prepare("SELECT username FROM users WHERE username = :username");
-    $stmt->execute(['username' => $username]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-  }
-
-  public function findByEmail(string $email) {
-    $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->execute(['email' => $email]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
-  }
-
-  public function findUserByEmail(string $email) {
+  public function findByEmail(string $email): array {
     $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
