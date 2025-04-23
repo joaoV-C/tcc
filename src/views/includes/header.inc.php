@@ -88,15 +88,26 @@
               <?php if (!isset($_SESSION['user_id'])): ?>
                 <a href="/tcc/signin?action=login">Iniciar sessão</a>
                 <a href="/tcc/signup?action=signup">Criar conta</a>
+                <a href="/tcc/admin">Admin</a>
               <?php else: ?>
                 <a href="/tcc/account?user=<?= htmlspecialchars($_SESSION['user_email']) ?>">Conta</a>
                 <a href="/tcc/profile">Perfil</a>
-                <a href="#" class="logout-redirector">Logout</a>
+                <span>
+                  <a href="#" class="admin-redirector">Admin</a>
 
-                <form action="/tcc/signout" method="post" style="display: none"
-                  class="logout-redirector-form">
-                  <input type="hidden" name="action_token" value="123">
-                </form>
+                  <form action="/tcc/admin?page=users" method="post" style="display: none;"
+                    class="admin-redirector-form">
+                    <input type="hidden" name="page" value="users">
+                  </form>
+                </span>
+                <span>
+                  <a href="#" class="logout-redirector">Logout</a>
+
+                  <form action="/tcc/signout" method="post" style="display: none"
+                    class="logout-redirector-form">
+                    <input type="hidden" name="action_token" value="123">
+                  </form>
+                </span>
               <?php endif ?>
             </div>
           </div>
