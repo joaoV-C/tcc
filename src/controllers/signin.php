@@ -2,8 +2,8 @@
 require_once __DIR__ . '/../models/user_model.php';
 require_once __DIR__ . '/../includes/signin_contr.inc.php';
 
-try {
-  $userModel = new UserModel($pdo);
+function handleSigninRequest() {
+  $userModel = new UserModel($GLOBALS['pdo']);
   $signinErrorHandler = new SigninErrorHandler($userModel);
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signin'])) {
@@ -26,33 +26,22 @@ try {
         'password' => $password
       ];
 
-      header('Location: /signin.php?entrar=falha');
+      header('Location: /tcc/signin?entrar=falha');
       exit();
     } else {
       $_SESSION['signin_success'] = 'Log in efetuado com sucesso';
       $_SESSION['user_id'] = $userModel->findByEmail($email)['id'];
       $_SESSION['user_email'] = $userModel->findByEmail($email)['email'];
 
-      header('Location: /signin.php?entrar=sucesso');
-      exit();
-    }
-  } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action'])) {
-    if ($_GET['action'] === 'login') {
-      include 'includes/signin/signin_view.inc.php';
+      header('Location: /tcc/signin?entrar=sucesso');
       exit();
     }
   }
-} catch (PDOException $e) {
-  $_SESSION['signin_errors'] = ("Falha na consulta: " . $e->getMessage());
-  header("Location: /signin.php");
-  exit();
+  $signinErrors = $_SESSION['signin_errors'] ?? '';
+  $signinSuccess = $_SESSION['signin_success'] ?? '';
+  $userEmail = $_SESSION['user_email'] ?? '';
+  $signinData = $_SESSION['signin_data'] ?? '';
+  unset($_SESSION['signin_errors'], $_SESSION['signin_success'], $_SESSION['signin_data']);
+
+  require __DIR__ . '/../views/signin_view.inc.php';
 }
-
-$signinErrors = $_SESSION['signin_errors'] ?? '';
-$signinSuccess = $_SESSION['signin_success'] ?? '';
-$userEmail = $_SESSION['user_email'] ?? '';
-$signinData = $_SESSION['signin_data'] ?? '';
-unset($_SESSION['signin_errors'], $_SESSION['signin_success'], $_SESSION['signin_data']);
-
-
-include 'includes/signin/signin_view.inc.php';
