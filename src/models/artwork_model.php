@@ -16,4 +16,28 @@ class ArtworkModel {
     $stmt->execute([$id]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
+
+  public function addArtwork(): void {
+  }
+
+  public function updateArtworks(array $artworkEditData): void {
+    $stmt = $this->pdo->prepare(
+      "UPDATE artworks 
+      SET image = :image,
+          name = :name, 
+          date = :date, 
+          artist = :artist, 
+          price = :price
+      WHERE id = :artworkId"
+    );
+
+    $stmt->execute([
+      'image' => $artworkEditData['image_file'],
+      'name' => $artworkEditData['product_name'],
+      'date' => $artworkEditData['product_date'],
+      'artist' => $artworkEditData['artist_name'],
+      'price' => $artworkEditData['product_price'],
+      'artworkId' => $artworkEditData['product_id']
+    ]);
+  }
 }
