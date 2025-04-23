@@ -34,7 +34,7 @@
   <h1>Galeria de Trabalhos</h1>
   <div class="gallery-grid">
     <?php foreach ($artworks as $artwork): ?>
-      <a href="/tcc/product?id=<?= htmlspecialchars($artwork['id']) ?>">
+      <a href="/tcc/product?id=<?= htmlspecialchars($artwork['id']) ?>" id="<?= htmlspecialchars($artwork['id']) ?>">
         <div class="artwork-card">
           <img src="public/assets/images/<?= htmlspecialchars($artwork['image']) ?>"
             alt="<?= htmlspecialchars($artwork['name']) ?>"
