@@ -6,7 +6,12 @@ class UserModel {
     $this->pdo = $pdo;
   }
 
-  public function findByEmail(string $email): array {
+  public function getAllUsers(): array {
+    $stmt = $this->pdo->query("SELECT * FROM users");
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function findByEmail(string $email): mixed {
     $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = :email");
     $stmt->execute(['email' => $email]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -105,6 +110,16 @@ class UserModel {
       ORDER BY o.order_date DESC"
     );
     $stmt->execute(['user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getAllOrders(): array {
+    $stmt = $this->pdo->query(
+      "SELECT * 
+      FROM orders o
+      JOIN order_items oi ON o.order_id = oi.order_id
+      ORDER BY o.order_date DESC"
+    );
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   }
 
