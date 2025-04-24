@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página da administração</title>
   <link rel="stylesheet" href="public/css/styles.css">
+  <script src="/tcc/js/index.js"></script>
 </head>
 
 <body>
@@ -163,22 +164,22 @@
           </h2>
           <h2>
             Título:
-            <input type="text" name="product_name" value="<?= htmlspecialchars($artworkById['name'] ?? $_SESSION['artwork_edit_data']['product_name']) ?>">
+            <input type="text" name="product_name" class="input-error" value="<?= htmlspecialchars($artworkById['name'] ?? $_SESSION['artwork_edit_data']['product_name']) ?>">
           </h2>
           <h2>
-            Data:
+            Ano:
             <input type="text" name="product_date" value="<?= htmlspecialchars($artworkById['date'] ?? $_SESSION['artwork_edit_data']['product_date']) ?>">
           </h2>
           <h2>
             Artista:
-            <input type="text" name="artist_name" value="<?= htmlspecialchars($artworkById['artist'] ?? $_SESSION['artwork_edit_data']['artist_name']) ?>">
+            <input type="text" name="artist_name" class="input-error" value="<?= htmlspecialchars($artworkById['artist'] ?? $_SESSION['artwork_edit_data']['artist_name']) ?>">
           </h2>
           <h2>
             Preço: €
             <?php if (!isset($_SESSION['artwork_edit_data']['product_price'])): ?>
-              <input type="text" name="product_price" value="<?= number_format($artworkById['price'], 2) ?>">
+              <input type="text" name="product_price" class="input-error" value="<?= number_format($artworkById['price'], 2) ?>">
             <?php else: ?>
-              <input type="text" name="product_price" value="<?= number_format($_SESSION['artwork_edit_data']['product_price'], 2) ?>">
+              <input type="text" name="product_price" class="input-error" value="<?= number_format($_SESSION['artwork_edit_data']['product_price'], 2) ?>">
             <?php endif; ?>
           </h2>
 
@@ -191,12 +192,12 @@
         </form>
 
 
-        <form action="/tcc/admin?page=delete_artwork" method="post">
+        <form action="/tcc/admin" method="post">
           <input type="hidden" name="page" value="delete_artwork">
-          <input type="hidden" name="artwork_id" value="<?= $artworkById['id'] ?>">
+          <input type="hidden" name="artwork_id" value="<?= htmlspecialchars($artworkById['id']) ?>">
           <button type="submit" class="btn artwork-btn delete"
             onclick="return confirm('Apagar usuário? Esta ação não pode ser desfeita')">
-            Excluir
+            Deletar produto
           </button>
         </form>
       </div>
@@ -208,29 +209,26 @@
         <form action="/tcc/admin?page=save_new_artwork" method="post" enctype="multipart/form-data">
           <h2>
             Imagem:
-            <input type="file" name="new_image" class="input image-upload-input">
-            <?php if (!empty($adminErrors['empty_input'])): ?>
-              <p class="error error-message"><?php echo $signinErrors['unsigned_email']; ?></p>
-            <?php endif; ?>
+            <input type="file" name="new_image" class="input image-upload-input input-error">
           </h2>
           <h2>
             Título:
-            <input type="text" name="product_name">
+            <input type="text" name="product_name" class="input-error">
           </h2>
           <h2>
-            Data:
+            Ano:
             <input type="text" name="product_date">
           </h2>
           <h2>
             Artista:
-            <input type="text" name="artist_name">
+            <input type="text" name="artist_name" class="input-error">
           </h2>
           <h2>
             Preço: €
-            <input type="text" name="product_price">
+            <input type="text" name="product_price" class="input-error">
           </h2>
 
-          <input type="hidden" name="page" value="add_new_artwork">
+          <input type="hidden" name="page" value="save_new_artwork">
           <input type="hidden" name="artwork_id" value="<?= htmlspecialchars($artworkById['id']) ?>">
           <button type="submit" class="btn artwork-btn save-changes"
             onclick="return confirm('Salvar mudanças? Esta ação não pode ser desfeita')">
@@ -242,6 +240,14 @@
     <?php endif; ?>
 
   </div>
+
+  <?php if (!empty($adminErrors['empty_input'])): ?>
+    <script type="text/javascript" async>
+      const errorMessage = <?php echo json_encode($adminErrors['empty_input']); ?>;
+      console.log(errorMessage);
+      errorBorderCreator(errorMessage);
+    </script>
+  <?php endif; ?>
 </body>
 
 </html>
