@@ -17,7 +17,19 @@ class ArtworkModel {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
-  public function addArtwork(): void {
+  public function addNewArtwork($newArtworkData): void {
+    $stmt = $this->pdo->prepare(
+      "INSERT INTO artworks (image, name, date, artist, price)
+       VALUES (:imageFile, :productName, :productDate, :artistName, :productPrice)"
+    );
+
+    $stmt->execute([
+      'imageFile' => $newArtworkData['image_file'],
+      'productName' => $newArtworkData['product_name'],
+      'productDate' => $newArtworkData['product_date'],
+      'artistName' => $newArtworkData['artist_name'],
+      'productPrice' => $newArtworkData['product_price']
+    ]);
   }
 
   public function updateArtworks(array $artworkEditData): void {
@@ -39,5 +51,12 @@ class ArtworkModel {
       'price' => $artworkEditData['product_price'],
       'artworkId' => $artworkEditData['product_id']
     ]);
+  }
+
+  public function deleteArtwork($artworkId): void {
+    $stmt = $this->pdo->prepare(
+      "DELETE FROM artworks WHERE artworks.id = ?"
+    );
+    $stmt->execute([$artworkId]);
   }
 }
