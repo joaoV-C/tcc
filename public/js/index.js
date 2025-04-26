@@ -1,10 +1,20 @@
 const dropdownBtn = document.querySelector(".user.icon-btn");
 const logoutRedirector = document.querySelector(".logout-redirector");
 const logoutRedirectorForm = document.querySelector(".logout-redirector-form");
+const adminRedirector = document.querySelector(".admin-redirector");
+const adminRedirectorForm = document.querySelector(".admin-redirector-form");
 
 dropdownBtn.addEventListener("click", toggleDropdown);
 
-logoutRedirector.addEventListener("click", () => logoutRedirectorForm.submit());
+if (logoutRedirector) {
+  logoutRedirector.addEventListener("click", () =>
+    logoutRedirectorForm.submit()
+  );
+}
+
+if (adminRedirector) {
+  adminRedirector.addEventListener("click", () => adminRedirectorForm.submit());
+}
 
 // Toggle dropdown visibility
 function toggleDropdown() {
@@ -24,3 +34,17 @@ window.onclick = function (event) {
     }
   }
 };
+
+function errorBorderCreator(errorMessage) {
+  const inputError = document.querySelectorAll(".input-error");
+
+  inputError.forEach((input) => {
+    const p = document.createElement("p");
+    p.className = "error error-message";
+    p.innerText = errorMessage;
+
+    input.style.border = "2px solid #f02b2b";
+    input.style.padding = "2px";
+    input.after(p);
+  });
+}
