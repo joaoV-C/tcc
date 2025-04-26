@@ -1,9 +1,7 @@
 <?php
-require_once 'src/config/config_session.php';
-require_once 'includes/dbh.inc.php';
-require_once '/src/models/artwork_model.php';
+function handleShopRequest(): void {
+  $artworkModel = new ArtworkModel($GLOBALS['pdo']);
+  $artworks = $artworkModel->getAllArtworks();
 
-$artworkModel = new ArtworkModel($pdo);
-$artworks = $artworkModel->getAllArtworks();
-
-include 'includes/compre/shop_view.inc.php';
+  include __DIR__ . '/../views/shop_view.inc.php';
+}
