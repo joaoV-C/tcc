@@ -156,4 +156,11 @@ class UserModel {
       throw $e;
     }
   }
+
+  public function deleteUser($userId): void {
+    $stmt = $this->pdo->prepare(
+      "DELETE FROM users WHERE users.id = ?"
+    );
+    $stmt->execute([$userId]);
+  }
 }
