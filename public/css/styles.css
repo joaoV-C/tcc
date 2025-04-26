@@ -7,27 +7,25 @@
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   font-family: "Sarabun", sans-serif;
   line-height: 1.4;
   background-color: #ffffff;
-  padding-top: 60px;
+  /* padding-top: 60px; */
 }
 
 /* Containers, forms, inputs, buttons styling */
-.form-input.container {
+.form-input.container,
+.signin-form {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
 }
-
 input {
   background: none;
   border: 1px solid #333;
   border-radius: 3px;
 }
-
 .btn {
   max-width: 100px;
   padding: 5px 8px;
@@ -37,18 +35,17 @@ input {
   border: 1px solid #333;
   border-radius: 20px;
 }
-
 .error-message {
   margin: 0;
   font-weight: 800; /* Sarabun ExtraBold */
   font-style: normal;
   font-size: 0.877rem;
-  color: rgb(223, 18, 18);
+  color: #f02b2b;
 }
 
 /* HEADER */
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
@@ -60,7 +57,6 @@ header {
   padding: 0 50px 0 50px;
   z-index: 999;
 }
-
 .logo {
   display: flex;
   position: relative;
@@ -70,7 +66,6 @@ header {
   line-height: 1.6rem;
   margin: 5px 0 5px;
 }
-
 .logo a {
   text-decoration: none;
   color: #333;
@@ -85,7 +80,6 @@ nav ul {
   display: flex;
   align-items: center;
   gap: 22px;
-
   @media (max-width: 768px) {
     position: absolute;
     top: 55.59px;
@@ -98,7 +92,6 @@ nav ul {
     overflow: hidden;
     transition: max-height 0.3s ease;
   }
-
   & li a {
     text-decoration: none;
     text-transform: uppercase;
@@ -108,7 +101,6 @@ nav ul {
     font-style: normal;
     font-size: 0.87rem;
     line-height: 1.4;
-
     @media (max-width: 768px) {
       font-weight: 600;
       font-style: normal;
@@ -118,7 +110,6 @@ nav ul {
     }
   }
 }
-
 nav ul li a {
   text-decoration: none;
   text-transform: uppercase;
@@ -129,11 +120,9 @@ nav ul li a {
   font-size: 0.87rem;
   line-height: 1.4;
 }
-
 .user-menu-container {
   padding-left: 10px;
 }
-
 .user.btn {
   display: flex;
   border: none;
@@ -141,7 +130,6 @@ nav ul li a {
   color: #333;
   padding-top: 2px;
 }
-
 .cart.btn {
   display: flex;
   border: none;
@@ -158,7 +146,6 @@ nav ul li a {
   flex-direction: column;
   cursor: pointer;
 }
-
 .menu-icon span {
   width: 25px;
   height: 3px;
@@ -180,13 +167,11 @@ nav ul li a {
   position: relative;
   overflow: hidden;
 }
-
 .carousel {
   display: flex;
   width: 100%;
   transition: transform 0.5s ease;
 }
-
 .carousel-item {
   display: flex;
   flex: 0 0 100%;
@@ -198,13 +183,11 @@ nav ul li a {
   /* overflow: hiden; */
   /* padding: 0 20px; */
 }
-
 .carousel-item img {
   width: 50%;
   height: 100%; /* Ajusta proporcionalmente */
   object-fit: cover;
 }
-
 .hero-text {
   width: 50%;
   padding: 0 20px;
@@ -247,7 +230,6 @@ nav ul li a {
   margin-top: 40px;
   gap: 15px;
 }
-
 .carousel-indicators .dot {
   width: 12px;
   height: 12px;
@@ -256,7 +238,6 @@ nav ul li a {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .carousel-indicators .dot.active {
   /* Slide autal */
   background-color: #333;
@@ -267,25 +248,21 @@ nav ul li a {
 .trabalhos-recentes {
   padding: 40px 20px;
 }
-
 .em-destaque h2,
 .trabalhos-recentes h2 {
   font-size: 1.875rem;
   margin-bottom: 20px;
 }
-
 .destaque-grid,
 .recentes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
 }
-
 .destaque-item,
 .recente-item {
   text-align: center;
 }
-
 .destaque-item img,
 .recente-item img {
   width: 100%;
@@ -293,7 +270,6 @@ nav ul li a {
   background-color: #ccc; /* Placeholder visual */
   display: block;
 }
-
 .destaque-item p,
 .recente-item p {
   font-size: 32px; /* Aproximado de 24pt */
@@ -305,7 +281,6 @@ footer {
   background-color: #f2f2f2; /* Talvez mudar para a mesma cor do restante do site */
   padding: 20px;
 }
-
 .footer-content {
   display: flex;
   flex-wrap: wrap;
@@ -314,15 +289,12 @@ footer {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .footer-content div {
   flex: 1 1 200px;
 }
-
 .contact p {
   color: #79747e;
 }
-
 .policies a {
   display: block;
   color: #79747e;
@@ -330,21 +302,17 @@ footer {
   font-size: 0.8rem; /* Sujeito à mudança */
   margin-bottom: 8px;
 }
-
 .newsletter h3 {
   margin-bottom: 10px;
 }
-
 .newsletter form {
   display: flex;
   gap: 10px;
 }
-
 .newsletter input[type="email"] {
   flex: 1;
   padding: 8px;
 }
-
 .newsletter button {
   padding: 8px 16px;
   cursor: pointer;
@@ -357,7 +325,6 @@ footer {
   #menu-toggle:checked + .menu-icon + nav ul {
     max-height: 300px; /* valor suficiente para exibir todos os links */
   } /* Mudar para javascript */
-
   .menu-icon {
     display: flex; /* Mostra o ícone burger no mobile */
     position: absolute;
@@ -372,14 +339,12 @@ footer {
     min-height: auto;
     padding: 0;
   }
-
   .carousel-item img {
     width: 100%;
     height: auto;
     padding: 0 20px;
     box-sizing: border-box;
   }
-
   .hero-text {
     width: 100%;
     padding: 0 20px;
@@ -404,12 +369,10 @@ footer {
   border: 1px solid #ddd;
   padding: 1rem;
 }
-
 .product-image {
   max-width: 80px;
   height: auto;
 }
-
 .checkout.container {
   display: flex;
   flex-direction: row;
@@ -417,7 +380,6 @@ footer {
   gap: 30px;
   padding-top: 80px;
 }
-
 @media (max-width: 1128px) {
   .checkout.container {
     display: flex;
@@ -426,4 +388,52 @@ footer {
     gap: 30px;
     padding-top: 80px;
   }
+}
+
+/* ADMIN */
+.delete-user-btn {
+  max-width: 100%;
+  background: #e81212;
+  color: #ffff;
+  border: none;
+  border-radius: 5px;
+}
+.btn-danger {
+  max-width: 100%;
+  background: #e81212;
+  color: #ffff;
+  border: none;
+  border-radius: 5px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  /*! padding: 2rem; */
+  padding: 2rem 4rem;
+}
+.artwork-card {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  text-align: center;
+}
+.artwork-image {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+.form.add-artwork-form {
+  position: fixed;
+  right: 4.67rem;
+  bottom: 30px;
+}
+.btn.add-artwork-btn {
+  border: none;
+  border-radius: 8.2px;
+  background: #1d1d1f;
+  font-size: 2.5rem;
+  width: 100%;
+  line-height: 100%;
+  color: white;
 }
