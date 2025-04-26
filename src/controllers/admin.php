@@ -10,11 +10,19 @@ function handleAdminRequest(): void {
       $userModel = new UserModel($GLOBALS['pdo']);
       $artworkModel = new ArtworkModel($GLOBALS['pdo']);
 
+      function refreshUsersSessionData($userModel): void {
+        $allUsers = $userModel->getAllUsers();
+        $_SESSION['all_users'] = $allUsers;
+      }
+
+      function refreshArtworksSessionData($artworkModel): void {
+        $artworks = $artworkModel->getAllArtworks();
+        $_SESSION['artworks'] = $artworks;
+      }
+
       $errors = [];
 
       if (isset($_POST['page']) && $_POST['page'] === 'users') {
-        $allUsers = $userModel->getAllUsers();
-
         $userEmail = strtolower($_SESSION['user_email']);
         $adminEmails = [
           'admin@email.com'
@@ -22,7 +30,22 @@ function handleAdminRequest(): void {
         $isAdmin = in_array($userEmail, $adminEmails);
 
         if (!$isAdmin) {
+          $errors['is_not_admin'] = 'Área restrita a administradores';
+        }
+
+        if (!empty($errors)) {
           header('Location: /tcc/account?action=redirection');
+          exit();
+        } elseif (isset($_POST['user_id'], $_POST['delete_user'])) {
+          $userId = $_POST['user_id'];
+          $deleteUser = $userModel->deleteUser($userId);
+          refreshUsersSessionData($userModel);
+
+          header('Location: /tcc/admin?page=users&action=delete_user_success');
+          exit();
+        } else {
+          refreshUsersSessionData($userModel);
+          header('Location: /tcc/admin?page=users');
           exit();
         }
       } elseif (isset($_POST['page']) && $_POST['page'] === 'all_orders') {
@@ -52,12 +75,22 @@ function handleAdminRequest(): void {
           $groupedOrders[$orderId]['items'][] = $item;
         }
       } elseif (isset($_POST['page']) && $_POST['page'] === 'all_products') {
-        $artworks = $artworkModel->getAllArtworks();
-        $_SESSION['artworks'] = $artworks;
+
+        refreshArtworksSessionData($artworkModel);
+
+        header('Location: /tcc/admin?page=all_products');
+        exit();
       } elseif (isset($_POST['page'], $_POST['id']) && $_POST['page'] === 'edit_product') {
         $artworkById = $artworkModel->getArtworkById($_POST['id']);
+        $_SESSION['artwork_by_id'] = $artworkById;
+
+        header('Location: /tcc/admin?page=edit_product&id=' . $artworkById['id']);
+
+        exit();
       } elseif (isset($_POST['page'], $_POST['artwork_id']) && $_POST['page'] === 'save_artwork_changes') {
-        $artworkById = $artworkModel->getArtworkById($_POST['artwork_id']);
+        $artworkId = $_POST['artwork_id'];
+        $artworkById = $artworkModel->getArtworkById($artworkId);
+        //$artworks = $artworkModel->getAllArtworks();
 
         //$currentImage = $artworkById['image'];
         //$imageFile = $_FILES['new_image']['tpm_name'];
@@ -67,12 +100,12 @@ function handleAdminRequest(): void {
         $productPrice = $_POST['product_price'];
         $productId = $_POST['artwork_id'];
 
-        if (!empty($_FILES['new_image']['tpm_name'])) {
+        if (!empty($_FILES['new_image']['tmp_name'])) {
           $uploadDir = 'public/assets/images/';
           $imageFile = basename($_FILES['new_image']['name']);
           $uploadFile = $uploadDir . $imageFile;
 
-          if (move_uploaded_file($_FILES['new_image']['tpm_name'], $uploadFile)) {
+          if (move_uploaded_file($_FILES['new_image']['tmp_name'], $uploadFile)) {
             $success['upload_success'] = 'Upload do arquivo realizado com sucesso';
           } else {
             $errors['upload_fail'] = 'Falha no upload do arquivo';
@@ -100,19 +133,24 @@ function handleAdminRequest(): void {
           $_SESSION['admin_errors'] = $errors;
           $_SESSION['artwork_edit_data'] = $artworkEditData;
 
-          header('Location: /tcc/admin?page=edit_product&id=' . $productId . '&action=fail_to_edit');
-          exit('Erro ao gravar edição');
+          header('Location: /tcc/admin?page=edit_product&action=fail_to_edit&id=' . $productId);
+          exit;
         } else {
           $_SESSION['artwork_edit_data'] = $artworkEditData;
 
           $updateArtworkData = $artworkModel->updateArtworks($artworkEditData);
 
-          header('Location: /tcc/admin?page=edit_product&id=' . $productId . '&action=edit_product');
+          refreshArtworksSessionData($artworkModel);
+
+          header('Location: /tcc/admin?page=all_products&action=edit_product_success&productId=' . $productId);
+          //header('Location: /tcc/admin?page=edit_product&id=' . $productId . '&action=edit_product_success');
           // header('Location: /tcc/product?id=' . htmlspecialchars($productId) . '&action=edit_product');
           exit();
         }
-      } elseif (isset($_POST['page'], $_POST['artwork_id']) && $_POST['page'] === 'delete_artwork') {
+      } elseif (isset($_POST['action'], $_POST['page'], $_POST['artwork_id']) && $_POST['action'] === 'delete_artwork') {
         $deleteArtwork = $artworkModel->deleteArtwork($_POST['artwork_id']);
+
+        refreshArtworksSessionData($artworkModel);
 
         header('Location: /tcc/admin?page=all_products&action=product_deleted');
         exit();
