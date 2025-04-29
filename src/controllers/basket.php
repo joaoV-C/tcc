@@ -2,7 +2,10 @@
 function handleBasketRequest(): void {
 
   try {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artwork_id'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_session']) && $_POST['user_session'] === 'isUnset') {
+
+      $_SESSION['cart_errors'] = ['user_unsigned' => 'Login necessário para prosseguir ao checkout'];
+    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artwork_id'])) {
 
       $artworkModel = new ArtworkModel($GLOBALS['pdo']);
       $artwork = $artworkModel->getArtworkById($_POST['artwork_id']);
@@ -82,8 +85,6 @@ function handleBasketRequest(): void {
       // GET request redirection. It prevents the forms from being submitted again when the page reloads
       header("Location: /tcc/cart");
       exit();
-    } elseif ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_session'])) {
-      $_SESSION['cart_errors'] = ['user_unsigned' => 'Login necessário para prosseguir ao checkout'];
     }
   } catch (Exception $e) {
     $_SESSION['cart_errors'] = ("Falha na consulta: " . $e->getMessage());
