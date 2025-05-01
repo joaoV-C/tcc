@@ -34,7 +34,7 @@
 
     /* Links inside the dropdown */
     .dropdown-content a {
-      color: black;
+      color: #1d1d1f;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
@@ -74,7 +74,7 @@
     </label>
 
     <nav>
-      <ul>
+      <ul class="menu-links">
         <li><a href="/tcc/artworks">Trabalhos</a></li>
         <li><a href="/tcc/artists">Artistas</a></li>
         <li><a href="/tcc/about">Sobre a Loja</a></li>
@@ -113,13 +113,13 @@
           </div>
         </li>
         <li>
-          <div class="cart-container">
-            <form action="/tcc/cart" method="post">
-              <button class="cart icon-btn">
-                <i class="fa-solid fa-bag-shopping"></i>
-              </button>
-            </form>
-          </div>
+
+          <form action="/tcc/cart" method="post">
+            <button class="btn cart-icon-btn">
+              <i class="fa-solid fa-bag-shopping"></i>
+            </button>
+          </form>
+
         </li>
       </ul>
     </nav>
