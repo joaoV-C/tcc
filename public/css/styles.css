@@ -107,9 +107,10 @@ header {
 nav ul {
   list-style: none;
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 22px;
-  @media (max-width: 768px) {
+  /* @media (max-width: 768px) {
     position: absolute;
     top: 55.59px;
     right: 0;
@@ -120,8 +121,9 @@ nav ul {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-  }
-  & li a {
+  } */
+  & li a,
+  li p {
     text-decoration: none;
     text-transform: uppercase;
     color: #333;
@@ -131,14 +133,15 @@ nav ul {
     font-size: 0.87rem;
     line-height: 1.4;
     @media (max-width: 768px) {
-      font-weight: 600;
+      font-weight: 500;
       font-style: normal;
-      font-size: 1.6rem;
+      font-size: 1.3rem;
       line-height: 1.6;
       letter-spacing: 0.007em;
     }
   }
 }
+/*
 .user-menu-container {
   padding-left: 10px;
 }
@@ -148,16 +151,18 @@ nav ul {
   text-align: center;
   color: #333;
   padding-top: 2px;
-}
+} */
 .btn.cart-icon-btn {
   display: flex;
   border: none;
   text-align: center;
   cursor: pointer;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-/* Ícone do menu burger (somente no mobile) */
+/*  Deprecated dropdown menu mechanism
 .menu-icon {
   display: none;
   flex-direction: column;
@@ -170,26 +175,128 @@ nav ul {
   margin: 4px 0;
   transition: 0.4s;
 }
-/* Esconde o checkbox para controlar o menu no mobile */
+
 #menu-toggle {
   display: none;
 }
-/* Responsive Menu */
+
 @media (max-width: 768px) {
   #menu-toggle:checked + .menu-icon + nav ul {
     max-height: 400px;
-  } /* Mudar para javascript */
+  } 
   .menu-icon {
-    display: flex; /* Mostra o ícone burger no mobile */
+    display: flex; 
     position: absolute;
     right: 30px;
+  }
+}
+*/
+.bars-menu-btn {
+  display: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+/* Dropdown button styling */
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+}
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Show dropdown menu when active */
+.dropdown-content.show {
+  display: block;
+  top: 48px;
+  position: absolute;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  /* Change color on hover */
+  a:hover {
+    background-color: #f1f1f1;
+  }
+}
+.cart-text {
+  display: none;
+}
+
+/* Icons styling */
+.fa-user,
+.fa-bag-shopping {
+  font-size: 1rem;
+  color: #333;
+}
+@media (max-width: 768px) {
+  .bars-menu-btn {
+    display: block;
+    position: absolute;
+    right: 50px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .navbar {
+    /* Hide navbar */
+    display: none;
+    position: absolute;
+    width: 100%;
+    padding: 2rem 0;
+    left: 0;
+    background-color: #f5f5f7;
+    min-width: 160px;
+    z-index: 1;
+  }
+  .navbar.show {
+    display: block;
+    top: 60px;
+    height: 100vh;
+  }
+  .navbar ul {
+    flex-direction: column;
+  }
+  #user-dropdown-btn {
+    display: none;
+  }
+  .dropdown-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    padding: 21px 0;
+  }
+  .dropdown-content a {
+    padding: 0;
+  }
+  .cart-text {
+    display: block;
+  }
+  .cart-icon-btn i {
+    display: none;
   }
 }
 
 /* HERO (CAROUSEL) */
 .hero {
   width: 100%;
-  /* margin-top: 55px; */
+  /*! margin-top: 55px; */
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
@@ -206,13 +313,13 @@ nav ul {
   justify-content: flex-start;
   min-height: 300px; /* Mudar para a altura ideal */
   max-height: 500px;
-  background-color: #d9d9d9;
-  /* overflow: hiden; */
-  /* padding: 0 20px; */
+  background-color: #dddddd;
+  /*! overflow: hidden; */
+  /*! padding: 0 20px; */
 }
 .carousel-item img {
   width: 50%;
-  height: 100%; /* Ajusta proporcionalmente */
+  height: 100%;
   object-fit: cover;
 }
 .hero-text {
@@ -223,7 +330,6 @@ nav ul {
   flex-direction: column;
   align-items: center;
 }
-
 /* Título Principal (H1) */
 .hero-text h1:first-of-type {
   font-weight: 600; /* Sarabun SemiBold */
@@ -231,14 +337,12 @@ nav ul {
   font-size: 3.5rem;
   margin-bottom: -10px;
 }
-
 /* Subtítulo (H1) */
 .hero-text h1:nth-of-type(2) {
   font-weight: 400; /* Sarabun Regular */
   font-style: normal;
   font-size: 3.5em;
 }
-
 /* Texto menor (H2) */
 .hero-text h2 {
   font-weight: 400; /* Sarabun Regular */
@@ -248,7 +352,6 @@ nav ul {
   text-align: center;
   max-width: 500px;
 }
-
 /* Indicadores do carrossel (“bolinhas”) */
 .carousel-indicators {
   display: flex;
@@ -271,6 +374,9 @@ nav ul {
 }
 
 /* HIGHLIGHTS SECTION */
+.homepage-main-container {
+  margin: 40px 50px 50px 50px;
+}
 .em-destaque,
 .trabalhos-recentes {
   padding: 40px 20px;
@@ -305,7 +411,7 @@ nav ul {
 
 /* FOOTER */
 footer {
-  background-color: #f2f2f2; /* Talvez mudar para a mesma cor do restante do site */
+  background-color: #f2f2f2;
   padding: 20px;
 }
 .footer-content {
@@ -326,7 +432,7 @@ footer {
   display: block;
   color: #79747e;
   text-decoration: none;
-  font-size: 0.8rem; /* Sujeito à mudança */
+  font-size: 0.8rem;
   margin-bottom: 8px;
 }
 .newsletter h3 {
@@ -347,16 +453,14 @@ footer {
 
 /* Main Page */
 @media (max-width: 425px) {
-  .carousel-item {
-    flex-direction: column;
-    min-height: auto;
-    padding: 0;
+  .page-h1 {
+    font-size: 1.6rem;
   }
   .carousel-item img {
     width: 100%;
-    height: auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+    /*! height: auto; */
+    /*! padding: 0 20px; */
+    /*! box-sizing: border-box; */
   }
   .hero-text {
     width: 100%;
@@ -374,11 +478,88 @@ footer {
     font-size: calc(1.875rem * 0.7);
   }
 }
+/* Responsivity */
+@media (max-width: 768px) {
+  .hero {
+    margin: 0;
+  }
+  .carousel-item {
+    flex-direction: column;
+  }
+  .carousel-item img {
+    width: 100%;
+    max-height: 400px;
+  }
+  .hero-text {
+    width: 100%;
+    & h1:first-of-type,
+    h1:nth-of-type(2) {
+      font-size: 1.5rem;
+      margin: 1px 0;
+    }
+    & h2 {
+      font-size: 1rem;
+      margin: 10px 0;
+    }
+  }
+  .destaque-item p, .recente-item p {
+    font-size: 1rem;
+  }
+}
+
+/* SIGNUP */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+}
+.signup-content {
+  margin: 30px auto;
+  max-width: 460px;
+  width: 40%;
+  @media (max-width: 620px) {
+    margin: 30px 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+.signup-content h2 {
+  padding-bottom: 15px;
+  text-align: center;
+}
+.signup-input {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.signup-input .form-textbox-input {
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: #333;
+  /* #86868b */
+  padding: 10px 12px;
+  box-sizing: border-box;
+  font-family: "Sarabun", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6rem;
+  width: 100%;
+}
+.signup-input .form-textbox-input input {
+  color: #1d1d1f;
+  text-overflow: ellipsis;
+}
+
 /* SIGNIN */
 .signin-content {
   margin: 30px auto;
   max-width: 460px;
   width: 40%;
+  @media (max-width: 620px) {
+    margin: 30px 0;
+    width: 100%;
+    max-width: 100%;
+  }
 }
 .signin-input-container {
   margin-bottom: 20px;
@@ -398,7 +579,7 @@ footer {
 }
 .btn.signin-btn {
   margin: 0 0 20px 0;
-  padding: 0.5rem 0;
+  /*! padding: 0.5rem 0; */
   border-width: 1.5px;
   font-size: 1.1rem;
   font-weight: 450;
