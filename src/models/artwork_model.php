@@ -17,6 +17,12 @@ class ArtworkModel {
     return $stmt->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function getArtworkByName($name) {
+    $stmt = $this->pdo->prepare("SELECT * FROM artworks WHERE name = ?");
+    $stmt->execute([$name]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+  }
+
   public function addNewArtwork($newArtworkData): void {
     $stmt = $this->pdo->prepare(
       "INSERT INTO artworks (image, name, date, artist, price)
