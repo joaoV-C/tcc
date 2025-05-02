@@ -20,6 +20,12 @@ function handleAdminRequest(): void {
         $_SESSION['artworks'] = $artworks;
       }
 
+      function refreshArtworkByIdSessionData($artworkModel, $artworkId): mixed {
+        $artworkById = $artworkModel->getArtworkById($artworkId);
+        $_SESSION['artwork_by_id'] = $artworkById;
+        return $artworkById;
+      }
+
       $errors = [];
 
       if (isset($_POST['page']) && $_POST['page'] === 'users') {
@@ -38,9 +44,12 @@ function handleAdminRequest(): void {
           exit();
         } elseif (isset($_POST['user_id'], $_POST['delete_user'])) {
           $userId = $_POST['user_id'];
+          $userEmail = $_POST['user_email'];
           $deleteUser = $userModel->deleteUser($userId);
-          refreshUsersSessionData($userModel);
 
+          $_SESSION['admin_success']['user_delete_success'] = 'Usuário de id #' . $userId . ' e email ' . $userEmail . ' deletado com sucesso.';
+
+          refreshUsersSessionData($userModel);
           header('Location: /tcc/admin?page=users&action=delete_user_success');
           exit();
         } else {
@@ -81,16 +90,14 @@ function handleAdminRequest(): void {
         header('Location: /tcc/admin?page=all_products');
         exit();
       } elseif (isset($_POST['page'], $_POST['id']) && $_POST['page'] === 'edit_product') {
-        $artworkById = $artworkModel->getArtworkById($_POST['id']);
-        $_SESSION['artwork_by_id'] = $artworkById;
+        $artworkId = $_POST['id'];
+        $artworkById = refreshArtworkByIdSessionData($artworkModel, $artworkId);
 
         header('Location: /tcc/admin?page=edit_product&id=' . $artworkById['id']);
-
         exit();
-      } elseif (isset($_POST['page'], $_POST['artwork_id']) && $_POST['page'] === 'save_artwork_changes') {
+      } elseif (isset($_POST['page'], $_POST['artwork_id']) && $_POST['action'] === 'save_artwork_changes') {
         $artworkId = $_POST['artwork_id'];
-        $artworkById = $artworkModel->getArtworkById($artworkId);
-        //$artworks = $artworkModel->getAllArtworks();
+        $artworkById = refreshArtworkByIdSessionData($artworkModel, $artworkId);
 
         //$currentImage = $artworkById['image'];
         //$imageFile = $_FILES['new_image']['tpm_name'];
@@ -106,10 +113,10 @@ function handleAdminRequest(): void {
           $uploadFile = $uploadDir . $imageFile;
 
           if (move_uploaded_file($_FILES['new_image']['tmp_name'], $uploadFile)) {
-            $success['upload_success'] = 'Upload do arquivo realizado com sucesso';
+            $success['upload_success'] = 'Upload realizado com sucesso';
           } else {
             $errors['upload_fail'] = 'Falha no upload do arquivo';
-            die('Falha no upload do arquivo');
+            //die('Falha no upload do arquivo');
           }
         } else {
           // Keep the existing filename
@@ -118,6 +125,9 @@ function handleAdminRequest(): void {
 
         if (empty($productName) || empty($artistName) || empty($productPrice)) {
           $errors['empty_input'] = '*Campo de preenchimento obrigatório';
+        }
+        if (!is_numeric($productPrice)) {
+          $errors['invalid_data_type'] = 'O campo do Preço dever ser preenchido por um valor numérico';
         }
 
         $artworkEditData = [
@@ -134,25 +144,34 @@ function handleAdminRequest(): void {
           $_SESSION['artwork_edit_data'] = $artworkEditData;
 
           header('Location: /tcc/admin?page=edit_product&action=fail_to_edit&id=' . $productId);
-          exit;
+          exit();
         } else {
+          $success['save_edit_success'] = 'Edições salvas com sucesso';
           $_SESSION['artwork_edit_data'] = $artworkEditData;
+          $_SESSION['admin_success'] = $success;
 
           $updateArtworkData = $artworkModel->updateArtworks($artworkEditData);
 
-          refreshArtworksSessionData($artworkModel);
+          refreshArtworkByIdSessionData($artworkModel, $artworkId);
 
-          header('Location: /tcc/admin?page=all_products&action=edit_product_success&productId=' . $productId);
-          //header('Location: /tcc/admin?page=edit_product&id=' . $productId . '&action=edit_product_success');
-          // header('Location: /tcc/product?id=' . htmlspecialchars($productId) . '&action=edit_product');
+          //header('Location: /tcc/admin?page=all_products&action=edit_product_success&productId=' . $productId);
+          header('Location: /tcc/admin?page=edit_product&action=edit_product_success&id=' . $productId);
           exit();
         }
-      } elseif (isset($_POST['action'], $_POST['page'], $_POST['artwork_id']) && $_POST['action'] === 'delete_artwork') {
-        $deleteArtwork = $artworkModel->deleteArtwork($_POST['artwork_id']);
+      } elseif (isset($_POST['page'], $_POST['artwork_id']) && $_POST['page'] === 'delete_artwork') {
+        $artworkId = $_POST['artwork_id'];
+        $deleteArtwork = $artworkModel->deleteArtwork($artworkId);
+
+        $_SESSION['admin_success']['delete_product'] = 'O produto de id #' . $artworkId . ' foi excluído com sucesso';
 
         refreshArtworksSessionData($artworkModel);
 
         header('Location: /tcc/admin?page=all_products&action=product_deleted');
+        exit();
+      } elseif (isset($_POST['page']) && $_POST['page'] === 'add_new_artwork') {
+        unset($_SESSION['new_artwork_data']);
+
+        header('Location: /tcc/admin?page=add_new_artwork');
         exit();
       } elseif (isset($_POST['page']) && $_POST['page'] === 'save_new_artwork') {
         $imageFile = $_FILES['new_image']['name'];
@@ -164,6 +183,9 @@ function handleAdminRequest(): void {
 
         if (empty($imageFile) || empty($productName) || empty($artistName) || empty($productPrice)) {
           $errors['empty_input'] = '*Campo de preenchimento obrigatório';
+        }
+        if (!is_numeric($productPrice)) {
+          $errors['invalid_data_type'] = 'O campo do Preço dever ser preenchido por um valor numérico';
         }
 
         $newArtworkData = [
@@ -181,10 +203,13 @@ function handleAdminRequest(): void {
           header('Location: /tcc/admin?page=add_new_artwork&action=fail_to_add_product');
           exit('Erro ao gravar novo produto');
         } else {
-          $_SESSION['artwork_edit_data'] = $newArtworkData;
+          //$_SESSION['artwork_edit_data'] = $newArtworkData;
+          $_SESSION['admin_success']['add_new_product_success'] = 'Produto criado com sucesso.';
 
+          $getArtworkByName = $artworkModel->getArtworkByName($newArtworkData['product_name']);
           $addNewArtwork = $artworkModel->addNewArtwork($newArtworkData);
 
+          unset($_SESSION['new_artwork_data']);
           header('Location: /tcc/admin?page=add_new_artwork&action=new_product_success');
           exit();
         }
