@@ -10,40 +10,41 @@
 
 <body>
   <?php include('includes/header.inc.php'); ?>
+  <div class="general-content-container">
+    <form action="/tcc/signin" method="post" class="form signin-form">
+      <div class="signin-content">
+        <h1 class="page-h1">Inicie sessão</h1>
 
-  <form action="/tcc/signin" method="post" class="form signin-form">
-    <div class="signin-content">
+        <?php if (!empty($signinSuccess)): ?>
+          <h3 class="alert alert-success success-message"><?php echo $signinSuccess ?></h3>
+        <?php endif ?>
 
-      <h2>Inicie sessão</h2>
+        <div class="container signin-input-container" id="signin-email">
+          <input type="text" name="email" placeholder="Email" class="form-textbox-input"
+            value="<?php echo htmlspecialchars($signinData['email'] ?? ''); ?>">
 
-      <?php if (isset($_SESSION['user_id'])): ?>
-        <h3 class="success success-message"><?php echo $signinSuccess ?></h3>
-      <?php endif ?>
+          <?php if (!empty($signinErrors['unsigned_email'])): ?>
+            <p class="error error-message"><?php echo $signinErrors['unsigned_email']; ?></p>
+          <?php endif; ?>
+        </div>
 
-      <div class="container signin-input-container" id="signin-email">
-        <input type="text" name="email" placeholder="Email" class="form-textbox-input"
-          value="<?php echo htmlspecialchars($signinData['email'] ?? ''); ?>">
+        <div class="container signin-input-container" id="signin-password">
+          <input type="password" name="password" placeholder="Palavra-passe" class="form-textbox-input"
+            value="<?php echo htmlspecialchars($signinData['password'] ?? ''); ?>">
 
-        <?php if (!empty($signinErrors['unsigned_email'])): ?>
-          <p class="error error-message"><?php echo $signinErrors['unsigned_email']; ?></p>
-        <?php endif; ?>
+          <?php if (!empty($signinErrors['wrong_password'])): ?>
+            <p class="error error-message"><?php echo $signinErrors['wrong_password']; ?></p>
+          <?php endif; ?>
+        </div>
+
+        <input type="hidden" name="signin" value="1">
+        <button type="submit" class="btn signin-btn">Continuar</button>
+
+        <div>
+          <a href="/tcc/signup">Criar conta</a>
+        </div>
       </div>
-
-      <div class="container signin-input-container" id="signin-password">
-        <input type="password" name="password" placeholder="Palavra-passe" class="form-textbox-input"
-          value="<?php echo htmlspecialchars($signinData['password'] ?? ''); ?>">
-
-        <?php if (!empty($signinErrors['wrong_password'])): ?>
-          <p class="error error-message"><?php echo $signinErrors['wrong_password']; ?></p>
-        <?php endif; ?>
-      </div>
-
-      <input type="hidden" name="signin" value="1">
-      <button type="submit" class="signin btn">Continuar</button>
-    </div>
-  </form>
-  <div>
-    <a href="/tcc/signup">Criar conta</a>
+    </form>
   </div>
 </body>
 

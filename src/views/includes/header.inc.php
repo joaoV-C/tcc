@@ -6,58 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Header</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    /* Dropdown container */
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    /* Dropdown button styling */
-    .icon-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-    }
-
-    /* Dropdown content (hidden by default) */
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      right: 0;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
-
-    /* Links inside the dropdown */
-    .dropdown-content a {
-      color: #1d1d1f;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-    }
-
-    /* Show dropdown menu when active */
-    .dropdown-content.show {
-      display: block;
-      top: 48px;
-    }
-
-    /* Change color on hover */
-    .dropdown-content a:hover {
-      background-color: #f1f1f1;
-    }
-
-    /* Person icon styling */
-    .fa-user,
-    .fa-bag-shopping {
-      font-size: 1rem;
-      color: #333;
-    }
-  </style>
   <script src="/tcc/js/index.js" async></script>
 </head>
 
@@ -65,15 +13,12 @@
   <header>
     <div class="logo"><a href="/tcc/">PlaceHolder</a></div>
 
-    <!-- Checkbox para controlar o menu no mobile -->
-    <input type="checkbox" id="menu-toggle" />
-    <label for="menu-toggle" class="menu-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-    </label>
+    <!-- Nav dropdown toggler -->
+    <button class="bars-menu-btn" id="menu-dropdown-btn">
+      <i class="fa-solid fa-bars"></i>
+    </button>
 
-    <nav>
+    <nav class="navbar">
       <ul class="menu-links">
         <li><a href="/tcc/artworks">Trabalhos</a></li>
         <li><a href="/tcc/artists">Artistas</a></li>
@@ -116,6 +61,7 @@
 
           <form action="/tcc/cart" method="post">
             <button class="btn cart-icon-btn">
+              <p class="cart-text">Cesto</p>
               <i class="fa-solid fa-bag-shopping"></i>
             </button>
           </form>

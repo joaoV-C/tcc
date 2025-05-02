@@ -51,45 +51,45 @@
       <span class="dot"></span>
     </div>
   </section>
+  <div class="homepage-main-container">
+    <!-- EM DESTAQUE -->
+    <section class="em-destaque">
+      <h2 class="page-h1">Em Destaque</h2>
+      <div class="destaque-grid">
+        <div class="destaque-item">
+          <img src="imagens/imagem1.jpg" alt="Destaque 1">
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="destaque-item">
+          <img src="imagem-destaque2.jpg" alt="Destaque 2">
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="destaque-item">
+          <img src="imagem-destaque3.jpg" alt="Destaque 3">
+          <p>Lorem ipsum dolor</p>
+        </div>
+      </div>
+    </section>
 
-  <!-- EM DESTAQUE -->
-  <section class="em-destaque">
-    <h2>Em Destaque</h2>
-    <div class="destaque-grid">
-      <div class="destaque-item">
-        <img src="imagens/imagem1.jpg" alt="Destaque 1">
-        <p>Lorem ipsum dolor</p>
+    <!-- TRABALHOS RECENTES -->
+    <section class="trabalhos-recentes">
+      <h2 class="page-h1">Trabalhos Recentes</h2>
+      <div class="recentes-grid">
+        <div class="recente-item">
+          <img src="imagem-recente1.jpg" alt="Recente 1">
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="recente-item">
+          <img src="imagem-recente2.jpg" alt="Recente 2">
+          <p>Lorem ipsum dolor</p>
+        </div>
+        <div class="recente-item">
+          <img src="imagem-recente3.jpg" alt="Recente 3">
+          <p>Lorem ipsum dolor</p>
+        </div>
       </div>
-      <div class="destaque-item">
-        <img src="imagem-destaque2.jpg" alt="Destaque 2">
-        <p>Lorem ipsum dolor</p>
-      </div>
-      <div class="destaque-item">
-        <img src="imagem-destaque3.jpg" alt="Destaque 3">
-        <p>Lorem ipsum dolor</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- TRABALHOS RECENTES -->
-  <section class="trabalhos-recentes">
-    <h2>Trabalhos Recentes</h2>
-    <div class="recentes-grid">
-      <div class="recente-item">
-        <img src="imagem-recente1.jpg" alt="Recente 1">
-        <p>Lorem ipsum dolor</p>
-      </div>
-      <div class="recente-item">
-        <img src="imagem-recente2.jpg" alt="Recente 2">
-        <p>Lorem ipsum dolor</p>
-      </div>
-      <div class="recente-item">
-        <img src="imagem-recente3.jpg" alt="Recente 3">
-        <p>Lorem ipsum dolor</p>
-      </div>
-    </div>
-  </section>
-
+    </section>
+  </div>
   <!-- FOOTER -->
   <footer>
     <div class="footer-content">

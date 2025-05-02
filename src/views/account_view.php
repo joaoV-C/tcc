@@ -6,65 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="public/css/styles.css">
-  <style>
-    .order-container {
-      margin: 2rem 2rem;
-      /*! border: 1px solid #ddd; */
-      padding: 1rem;
-      border-radius: 8px;
-      background-color: #f5f5f7;
-    }
-
-    .order-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .order-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    .order-table th,
-    .order-table td {
-      padding: 0.75rem;
-      border-bottom: 1px solid #ddd;
-      text-align: left;
-    }
-
-    .product-thumb {
-      max-width: 80px;
-      height: auto;
-    }
-
-    .cancel-form {
-      margin-top: 1rem;
-    }
-
-    .alert {
-      padding: 1rem;
-      margin: 1rem 0;
-      border-radius: 4px;
-    }
-
-    .alert-success {
-      background: #d4edda;
-      color: #155724;
-    }
-
-    .alert-error {
-      background: #f8d7da;
-      color: #721c24;
-    }
-  </style>
 </head>
 
 <body>
   <?php include 'includes/header.inc.php'; ?>
 
-  <div class="account container">
-    <h1>Histórico de pedidos</h1>
+  <div class="general-content-container account-container">
+    <h1 class="page-h1">Histórico de pedidos</h1>
 
     <?php if (isset($_SESSION['account_errors'])): ?>
       <div class="alert alert-error">
@@ -102,7 +50,7 @@
             </div>
           </div>
 
-          <table class="table order-table">
+          <table class="order-table">
             <thead>
               <tr>
                 <th>Produto</th>

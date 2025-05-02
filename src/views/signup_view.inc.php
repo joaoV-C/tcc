@@ -6,60 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="public/css/styles.css">
-  <style>
-    .signup-container {
-      display: flex;
-      flex-direction: column;
-      padding-top: 80px;
-    }
-
-    form .signup-content {
-      margin: 30px auto;
-      max-width: 460px;
-      width: 40%;
-    }
-
-    .signup-content h2 {
-      padding-bottom: 15px;
-      text-align: center;
-    }
-
-    .signup-input {
-      padding-top: 15px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .signup-input .form-textbox-input {
-      border: 1px solid;
-      border-radius: 5px;
-      border-color: #333;
-      /* #86868b */
-      padding: 10px 12px;
-      box-sizing: border-box;
-      font-family: "Sarabun", serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.6rem;
-      width: 100%;
-    }
-
-    .signup-input .form-textbox-input input {
-      color: #1d1d1f;
-      text-overflow: ellipsis;
-    }
-  </style>
 </head>
 
 <body>
   <?php include('includes/header.inc.php'); ?>
 
-  <div class="signup-container">
+  <div class="signup-container general-content-container">
     <form action="/tcc/signup" method="POST">
       <div class="signup-content">
 
-        <h2>Criar Conta</h2>
+        <h1 class="page-h1">Criar Conta</h1>
 
         <?php if (!empty($signupSuccess)): ?>
           <div class="success_message">
