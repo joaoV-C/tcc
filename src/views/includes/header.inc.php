@@ -11,7 +11,7 @@
 
 <body>
   <header>
-    <div class="logo"><a href="/tcc/">PlaceHolder</a></div>
+    <div class="logo"><a href="/tcc/">"PlaceHolder"</a></div>
 
     <!-- Nav dropdown toggler -->
     <button class="bars-menu-btn" id="menu-dropdown-btn">
@@ -20,9 +20,9 @@
 
     <nav class="navbar">
       <ul class="menu-links">
-        <li><a href="/tcc/artworks">Trabalhos</a></li>
-        <li><a href="/tcc/artists">Artistas</a></li>
-        <li><a href="/tcc/about">Sobre a Loja</a></li>
+        <li><a href="#">Trabalhos</a></li>
+        <li><a href="#">Artistas</a></li>
+        <li><a href="#">Sobre a Loja</a></li>
         <li><a href="/tcc/shop">Compre</a></li>
         <li>
           <div class="dropdown">
