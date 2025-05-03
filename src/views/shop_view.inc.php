@@ -19,7 +19,7 @@
   <?php include 'includes/header.inc.php' ?>
 
   <div class="general-content-container">
-    <h1 class="page-h1">Galeria de Trabalhos</h1>
+    <h1 class="page-h1">Prints de arte</h1>
 
     <div class="gallery-grid">
       <?php foreach ($artworks as $artwork): ?>
