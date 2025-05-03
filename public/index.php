@@ -57,7 +57,8 @@ switch ($requestPath) {
     handleAdminRequest();
     break;
   case '/':
-    include __DIR__ . '/../src/views/home.php';
+    include __DIR__ . '/../src/controllers/homepage.php';
+    handleHomepageRequest();
     break;
   default:
     http_response_code(404);
