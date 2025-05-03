@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>checkout</title>
   <link rel="stylesheet" href="public/css/styles.css">
-  <link rel="stylesheet" href="node_modules/intl-tel-input/build/css/intlTelInput.css">
+  <link rel="stylesheet" href="/tcc/public/vendor/intl-tel-input/css/intlTelInput.css">
 </head>
 
 <body>
@@ -145,11 +145,11 @@
   <?php endif; ?>
 
 
-  <script src="/tcc/node_modules/intl-tel-input/build/js/intlTelInput.js"></script>
-  <script>
+  <script type="text/javascript" src="/tcc/public/vendor/intl-tel-input/js/intlTelInput.js"></script>
+  <script type="text/javascript">
     const input = document.querySelector("#phone");
     window.intlTelInput(input, {
-      loadUtils: () => import("http://localhost/tcc/node_modules/intl-tel-input/build/js/utils.js"),
+      loadUtils: () => import("/tcc/public/vendor/intl-tel-input/js/utils.js"),
     });
   </script>
 </body>
